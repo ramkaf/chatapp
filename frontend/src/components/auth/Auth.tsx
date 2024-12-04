@@ -29,7 +29,7 @@ const Auth = ({submitLabel , onSubmit , children} : AuthProps) => {
                 value={email}
                 onChange={
                     (event) => {
-                        setPassword (event.target.value)
+                        setEmail (event.target.value)
                     }
                 }
             />
