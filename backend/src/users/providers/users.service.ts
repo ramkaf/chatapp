@@ -24,10 +24,14 @@ export class UsersService {
 
   async update(updateUserInput: UpdateUserInput) {
     const {_id , ... updateField} = updateUserInput 
+    if (updateField.password){
+      updateField.password = await this.passwordService.hashPassword(updateUserInput.password)
+    }
+    console.log(updateField);
+    
     return this.usersRepository.findOneAndUpdate({_id} , {
       $set : {
-        ...updateField , 
-        password:await this.passwordService.hashPassword(updateUserInput.password)
+        ...updateField
       }
     })
   }
